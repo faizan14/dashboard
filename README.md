@@ -102,11 +102,18 @@ Output goes to the `dist/` folder.
 
 ## Push to Your Own GitHub
 
-If you cloned this repo and want to push it as your own project:
+If you cloned this repo and want to use the code as your own fresh project (no prior git history):
 
 ```bash
-# Remove the original remote
-git remote remove origin
+# Remove the existing git history
+rm -rf .git
+
+# Initialize a fresh repo
+git init
+
+# Stage all files and create your first commit
+git add .
+git commit -m "Initial commit"
 
 # Create a new repo on GitHub (via browser or gh CLI), then:
 git remote add origin git@github.com:<your-username>/<your-repo-name>.git
