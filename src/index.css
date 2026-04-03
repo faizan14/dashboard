@@ -1,4 +1,2 @@
-body {
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+body { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; color: #1a2533; background: #F0F4F8; }
