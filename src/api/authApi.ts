@@ -26,7 +26,7 @@ export async function login(username: string, password: string): Promise<LoginRe
   }
 
   const hashedPassword = await hashPassword(password);
-  const { data } = await axiosInstance.post<LoginResponse>('/auth/api/login', {
+  const { data } = await axiosInstance.post<LoginResponse>('/api/v1/auth/login', {
     username,
     password: hashedPassword,
   });
@@ -46,7 +46,7 @@ export async function changePassword(
     hashPassword(oldPassword),
     hashPassword(newPassword),
   ]);
-  await axiosInstance.post('/auth/api/change-password', {
+  await axiosInstance.post('/api/v1/auth/change-password', {
     oldPassword: hashedOld,
     newPassword: hashedNew,
   });

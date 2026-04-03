@@ -12,12 +12,13 @@ A React dashboard with authentication, forced password change, user profile, and
 
 ## Features
 
-- **Login** — authenticates via `POST /auth/api/login`, stores JWT token
+- **Login** — authenticates via `POST /api/v1/auth/login`, stores JWT token
 - **Force Password Change** — if the server returns `forcePasswordChange: true`, the user is redirected to Change Password before accessing the app
 - **Change Password** — available as a forced redirect and also inside the User Profile; logs the user out on success
 - **Home Page** — dummy landing page after login
 - **User Profile** — displays user info, inline Change Password form, and an RBAC-gated "User Authorization" section (admin-only)
-- **RBAC** — the "User Authorization" settings section is hidden for non-admin roles (`SUPER_ADMIN` and `ADMIN` can see it)
+- **RBAC** — the "User Authorization" settings section is hidden for non-admin roles (`SUPER_ADMIN`, `TENANT_ADMIN`, and `WMS_ADMIN` can see it)
+- **Mandatory Headers** — every request includes `X-Tenant-ID`, `X-Correlation-ID` (per session), and `Idempotency-Key` (per write request)
 - **Password Hashing** — passwords are SHA-256 hashed client-side before being sent in API payloads
 
 ## Project Structure
@@ -122,10 +123,10 @@ git push -u origin main
 
 ## API Endpoints
 
-| Method | Endpoint                  | Description       |
-|--------|---------------------------|-------------------|
-| POST   | `/auth/api/login`         | User login        |
-| POST   | `/auth/api/change-password` | Change password |
+| Method | Endpoint                       | Description       |
+|--------|--------------------------------|-------------------|
+| POST   | `/api/v1/auth/login`           | User login        |
+| POST   | `/api/v1/auth/change-password` | Change password   |
 
 ### Login Request
 
@@ -157,3 +158,4 @@ git push -u origin main
 |---------------------|------------------------------------------|--------------------------|
 | `VITE_MOCK_API`     | Enable mock API mode (`true` / `false`)  | `false`                  |
 | `VITE_API_BASE_URL` | Backend API base URL                     | `http://localhost:8080`  |
+| `VITE_TENANT_ID`    | Value for the `X-Tenant-ID` header       | `DEFAULT`                |
